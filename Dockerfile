@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /raphanow
 
 # 
-COPY requirements.txt /requirements.txt
+COPY ./requirements.txt raphanow/requirements.txt
 
 # 
 RUN pip install -r requirements.txt
