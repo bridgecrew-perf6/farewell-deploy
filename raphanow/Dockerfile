@@ -2,7 +2,7 @@
 FROM python:3.9
 
 # 
-WORKDIR /raphanow
+WORKDIR /
 
 # 
 COPY requirements.txt /requirements.txt
@@ -11,7 +11,7 @@ COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 
 # 
-COPY ./raphanow /raphanow/app
+COPY ./app /code/app
 
 # 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
