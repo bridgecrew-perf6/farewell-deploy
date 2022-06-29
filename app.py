@@ -6,7 +6,7 @@ from pydoc import describe
 from pyexpat import model
 from typing import Optional, Generator, List
 from fastapi import FastAPI, Depends, HTTPException, File, Form, UploadFile, Request
-import models as models 
+import models
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field

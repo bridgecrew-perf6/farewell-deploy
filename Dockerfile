@@ -12,4 +12,4 @@ CMD exec gunicorn --bind :8080 --workers 1 --threads 8 --timeout 0 app:app
 
 # updated requirements.txt
 # engine 
-# deleted db_config#
+# deleted db_config###
