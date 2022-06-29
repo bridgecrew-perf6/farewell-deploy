@@ -28,11 +28,11 @@ cloudinary.config(
 # Remember - storing secrets in plaintext is potentially unsafe. Consider using
 # something like https://cloud.google.com/secret-manager/docs/overview to help keep
 # secrets secret.
-db_user = os.environ["farewell-user"]
-db_pass = os.environ["{mJHC52&'f85:3e#"]
-db_name = os.environ["farewell-db"]
-db_socket_dir = os.environ.get("DB_SOCKET_DIR", "/cloudsql")
-instance_connection_name = os.environ["INSTANCE_CONNECTION_NAME"]
+db_user = "farewell-user"
+db_pass = "{mJHC52&'f85:3e#"
+db_name = "farewell-db"
+db_socket_dir = "/cloudsql"
+instance_connection_name = "farewell-353911:europe-southwest1:farewell-instance"
 
 engine = sqlalchemy.create_engine(
 
