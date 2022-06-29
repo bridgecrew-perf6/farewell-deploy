@@ -31,9 +31,6 @@ db_url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(
 
 engine = sqlalchemy.create_engine(db_url)
 
-conn = engine.connect()
-
-
 #engine = create_engine(SQLALCHEMY_DABASE_URL, connect_args={"check_same_thread": False})
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
