@@ -22,7 +22,7 @@ import os
 
 from fastapi import FastAPI, Depends
 import models
-from routers import auth, main, auth_user
+from routers import auth, auth_user
 from starlette.staticfiles import StaticFiles
 
 from pathlib import Path
