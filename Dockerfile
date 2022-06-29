@@ -4,8 +4,6 @@ ENV PYTHONUNBUFFERED True
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
-
-ENV PORT 8080
 # Install production dependencies.
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
