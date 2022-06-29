@@ -1,14 +1,13 @@
-FROM python:3.9-slim@sha256:980b778550c0d938574f1b556362b27601ea5c620130a572feb63ac1df03eda5 
-
+FROM python:3
 ENV PYTHONUNBUFFERED True
-
+# Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
 ENV PORT 8080
-
+# Install production dependencies.
 RUN pip install -r requirements.txt
+RUN pip install gunicorn
 
-# As an example here we're running the web service with one worker on uvicorn.
-CMD exec uvicorn app:app --host 0.0.0.0 --port ${PORT} --workers 1
+CMD exec gunicorn --bind :8080 --workers 1 --threads 8 --timeout 0 app:app
