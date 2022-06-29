@@ -51,8 +51,7 @@ engine = sqlalchemy.create_engine(
                 db_socket_dir,  # e.g. "/cloudsql"
                 instance_connection_name)  # i.e "<PROJECT-NAME>:<INSTANCE-REGION>:<INSTANCE-NAME>"
         }
-    ),
-    **db_config
+    )
 )
 
 #engine = create_engine(SQLALCHEMY_DABASE_URL, connect_args={"check_same_thread": False})
