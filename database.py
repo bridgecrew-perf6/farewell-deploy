@@ -19,9 +19,12 @@ cloudinary.config(
 
 #SQLALCHEMY_DABASE_URL = "sqlite:///./solomon.db"
 
-#SQLALCHEMY_URL = \ 
-
-
+db_user = os.environ["DB_USER"]
+db_pass = os.environ["DB_PASS"]
+db_name = os.environ["DB_NAME"]
+db_socket_dir = os.environ.get("DB_SOCKET_DIR", "/cloudsql")
+instance_connection_name = os.environ["INSTANCE_CONNECTION_NAME"]
+db_url = f"postgresql+pg8000://{db_user}:{db_pass}@/{db_name}?unix_sock={db_socket_dir}/{instance_connection_name}/.s.PGSQL.5432"
 
 #username = "farewell-db-user"  # DB username
 #password = "farewell-db-password"  # DB password
@@ -32,31 +35,8 @@ cloudinary.config(
 #db_url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(
 #    username, password, host, port, database)
 
-#print(db_url)
 
-#engine = sqlalchemy.create_engine(db_url)
-
-engine = sqlalchemy.create_engine(
-
-    # Equivalent URL:
-    # postgresql+pg8000://<db_user>:<db_pass>@/<db_name>
-    #                         ?unix_sock=<socket_path>/<cloud_sql_instance_name>/.s.PGSQL.5432
-    # Note: Some drivers require the `unix_sock` query parameter to use a different key.
-    # For example, 'psycopg2' uses the path set to `host` in order to connect successfully.
-    sqlalchemy.engine.url.URL.create(
-        drivername="postgresql+pg8000",
-        username="farewell-db-user",  # e.g. "my-database-user"
-        password="farewell-db-password",  # e.g. "my-database-password"
-        database="farewell-db",  # e.g. "my-database-name"
-        query={
-            "unix_sock": "{}/{}/.s.PGSQL.5432".format(
-                "/cloudsql",  # e.g. "/cloudsql"
-                "farewell-353911:europe-southwest1:farewell-instance")  # i.e "<PROJECT-NAME>:<INSTANCE-REGION>:<INSTANCE-NAME>"
-        }
-    )
-)
-
-
+engine = sqlalchemy.create_engine(db_url)
 
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
