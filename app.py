@@ -419,3 +419,6 @@ async def upload_docs(
 
 app.include_router(auth.router)
 app.include_router(auth_user.router)
+
+if __name__ == "__main__":
+  app.run(debug=False, host ='0.0.0.0')

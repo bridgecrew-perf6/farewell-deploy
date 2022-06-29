@@ -1,17 +1,14 @@
-# 
-FROM python:3.9
+FROM python:3
 
-# 
-WORKDIR /raphanow
+ENV PYTHONUNBUFFERED True
 
-# 
-COPY raphanow/requirements.txt ./requirements.txt
+# Copy local code to the container image.
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
 
-# 
+# Install production dependencies.
 RUN pip install -r requirements.txt
+RUN pip install gunicorn
 
-# 
-COPY ./raphanow /raphanow/app
-
-# 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
