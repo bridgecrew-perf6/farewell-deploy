@@ -6,8 +6,10 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
+EXPOSE 8080:8080
+
 # Step 3. Install production dependencies.
 RUN pip install -r requirements.txt
 
 # Step 4: Run the web service on container startup using gunicorn webserver.
-CMD exec gunicorn --bind :8080 --workers 1 --worker-class uvicorn.workers.UvicornWorker  --threads 8 main:app
+CMD [ "python", "app.py" ]
