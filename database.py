@@ -34,7 +34,7 @@ db_name = "farewell-db"
 db_socket_dir = "/cloudsql"
 instance_connection_name = "farewell-353911:europe-southwest1:farewell-instance"
 
-engine = sqlalchemy.create_engine(
+engine = create_engine(
 
     # Equivalent URL:
     # postgresql+pg8000://<db_user>:<db_pass>@/<db_name>
