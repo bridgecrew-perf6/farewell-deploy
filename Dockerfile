@@ -1,15 +1,14 @@
-# Step 1: Use official lightweight Python image as base OS.
-FROM python:3.7-slim
+FROM python:3.9-slim@sha256:980b778550c0d938574f1b556362b27601ea5c620130a572feb63ac1df03eda5 
 
-# Step 2. Copy local code to the container image.
+ENV PYTHONUNBUFFERED True
+
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-EXPOSE 8080:8080
+ENV PORT 8080
 
-# Step 3. Install production dependencies.
 RUN pip install -r requirements.txt
 
-# Step 4: Run the web service on container startup using gunicorn webserver.
-CMD [ "python", "app.py" ]
+# As an example here we're running the web service with one worker on uvicorn.
+CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT} --workers 1
